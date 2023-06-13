@@ -73,7 +73,7 @@ func run(configFile string, cfg *config.AppConfig) (err error) {
 		return err
 	}
 	m.logger = initLogger(cfg)
-	m.rpc = initRpc(cfg.Rpc)
+	m.rpc = initRPC(cfg.RPC)
 	m.mux = initMux(cfg.Web)
 	m.waiter = waiter.New(waiter.CatchSignals())
 
@@ -117,7 +117,7 @@ func initLogger(cfg *config.AppConfig) zerolog.Logger {
 	})
 }
 
-func initRpc(_ config.RpcConfig) *grpc.Server {
+func initRPC(_ config.RPCConfig) *grpc.Server {
 	server := grpc.NewServer()
 	reflection.Register(server)
 

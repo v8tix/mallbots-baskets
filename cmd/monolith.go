@@ -99,7 +99,7 @@ func (a *app) waitForWeb(ctx context.Context) error {
 }
 
 func (a *app) waitForRPC(ctx context.Context) error {
-	listener, err := net.Listen("tcp", a.cfg.Rpc.Address())
+	listener, err := net.Listen("tcp", a.cfg.RPC.Address())
 	if err != nil {
 		return err
 	}
