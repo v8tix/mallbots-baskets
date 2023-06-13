@@ -58,7 +58,7 @@ func (m *Module) Startup(ctx context.Context, mono monolith.Monolith) (err error
 		return mono.DB(), nil
 	})
 	container.AddSingleton("conn", func(c di.Container) (any, error) {
-		return grpc.Dial(ctx, mono.Config().Rpc.Address())
+		return grpc.Dial(ctx, mono.Config().RPC.Address())
 	})
 	container.AddSingleton("outboxProcessor", func(c di.Container) (any, error) {
 		return tm.NewOutboxProcessor(
@@ -149,7 +149,7 @@ func (m *Module) Startup(ctx context.Context, mono monolith.Monolith) (err error
 	if err = grpc.RegisterServerTx(container, mono.RPC()); err != nil {
 		return err
 	}
-	if err = rest.RegisterGateway(ctx, mono.Mux(), mono.Config().Rpc.Address()); err != nil {
+	if err = rest.RegisterGateway(ctx, mono.Mux(), mono.Config().RPC.Address()); err != nil {
 		return err
 	}
 	if err = rest.RegisterSwagger(mono.Mux()); err != nil {
