@@ -22,14 +22,14 @@ import (
 	"github.com/v8tix/mallbots-baskets/internal/grpc"
 	"github.com/v8tix/mallbots-baskets/internal/handlers"
 	"github.com/v8tix/mallbots-baskets/internal/logging"
-	"github.com/v8tix/mallbots-baskets/internal/monolith"
+	"github.com/v8tix/mallbots-baskets/internal/ms"
 	"github.com/v8tix/mallbots-baskets/internal/postgres"
 	storespb "github.com/v8tix/mallbots-stores-proto/pb"
 )
 
 type Module struct{}
 
-func (m *Module) Startup(ctx context.Context, mono monolith.Monolith) (err error) {
+func (m *Module) Startup(ctx context.Context, mono ms.Microservice) (err error) {
 	container := di.New()
 	// setup Driven adapters
 	container.AddSingleton("registry", func(c di.Container) (any, error) {

@@ -16,7 +16,7 @@ import (
 
 	"github.com/v8tix/eda/waiter"
 	"github.com/v8tix/mallbots-baskets/internal/config"
-	"github.com/v8tix/mallbots-baskets/internal/monolith"
+	"github.com/v8tix/mallbots-baskets/internal/ms"
 )
 
 type app struct {
@@ -25,7 +25,7 @@ type app struct {
 	nc      *nats.Conn
 	js      nats.JetStreamContext
 	logger  zerolog.Logger
-	modules []monolith.Module
+	modules []ms.Module
 	mux     *chi.Mux
 	rpc     *grpc.Server
 	waiter  waiter.Waiter

@@ -19,7 +19,7 @@ import (
 	"github.com/v8tix/eda/web"
 	"github.com/v8tix/mallbots-baskets"
 	"github.com/v8tix/mallbots-baskets/internal/config"
-	"github.com/v8tix/mallbots-baskets/internal/monolith"
+	"github.com/v8tix/mallbots-baskets/internal/ms"
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 	var cfgFileFlag string
 	var cfg config.AppConfig
 
-	flag.StringVar(&cfgDirFlag, "d", "/home/v8tix/Public/projects/v8tix/microservices/environments/cloud/mallbots/baskets", "The configuration directory")
+	flag.StringVar(&cfgDirFlag, "d", "/home/v8tix/Public/projects/v8tix/microservices/environments/cloud/mallbots/baskets/dev", "The configuration directory")
 	flag.StringVar(&cfgFileFlag, "f", "config", "The configuration file")
 	flag.Parse()
 
@@ -78,7 +78,7 @@ func run(configFile string, cfg *config.AppConfig) (err error) {
 	m.waiter = waiter.New(waiter.CatchSignals())
 
 	// init modules
-	m.modules = []monolith.Module{
+	m.modules = []ms.Module{
 		&baskets.Module{},
 	}
 
